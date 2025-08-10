@@ -68,6 +68,16 @@ const switchCases = async (event, bot, chatId, msg) => {
     return;
   }
 
+  // Enforce admin-only access for any admin-prefixed commands
+  try {
+    if (event.startsWith("admin") && !isAdmin(username)) {
+      return await bot.sendMessage(chatId, "🚫 ACCESS BLOCKED");
+    }
+  } catch (err) {
+    console.error(`❌ Admin guard error: ${err.message}`);
+    return;
+  }
+
   try {
     switch (event) {
       case "top10": return top10Command({ bot, chatId });
@@ -85,7 +95,8 @@ const switchCases = async (event, bot, chatId, msg) => {
         return await bot.sendMessage(chatId, "⚙️ Admin Panel", {
           reply_markup: {
             inline_keyboard: [
-              [{ text: "🚀 Promoted Tokens", callback_data: "admin_promoted_tokens" }]
+              [{ text: "🚀 Promoted Tokens", callback_data: "admin_promoted_tokens" }],
+              [{ text: "▶️ Run Daily Job Now", callback_data: "admin_run_daily" }]
             ]
           }
         })
@@ -103,6 +114,10 @@ const switchCases = async (event, bot, chatId, msg) => {
       case "admin_add_token": return addPromotedToken({ bot, chatId });
       case "admin_remove_token": return removePromotedToken({ bot, chatId });
       case "admin_list_token": return listPromotedToken({ bot, chatId });
+      case "admin_run_daily":
+        await bot.sendMessage(chatId, "⏱ Triggering daily job…");
+        await sendDailyMessages();
+        return await bot.sendMessage(chatId, "✅ Daily job completed (or already up to date).");
       case "settings":
         return await bot.sendMessage(chatId, "⚙️ Manage your daily alerts:", {
           reply_markup: {

@@ -78,7 +78,7 @@ const ratings = {
   "SS": "🐻🔴 Dump",
 }
 
-const ADMIN_USERNAMES = ["@ceramicfingers", "@AgentDave007"];
+const ADMIN_USERNAMES = ["@ceramicfingers", "@sifuthedon", "@Miles4U" ];
 
 function isAdmin(ctx) {
   return ADMIN_USERNAMES.includes(`@${ctx}`);
