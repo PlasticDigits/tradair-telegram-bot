@@ -6,9 +6,9 @@
 
 ## 🚀 Features
 
-- 🔟 `/top10`: View top 10 token recommendations for the day, including *Promoted Tokens*.
+- 🔟 `/top10`: View top 10 token recommendations for the day, including _Promoted Tokens_.
 - 🏅 `/best`: Get the best token pick with recommendation and reason.
-- ❓ `/why [TICKER]`: Find out why a specific token is recommended.
+- ❓ `/why [TICKER]`: Find out why a specific token is recommended. [TEMPORARILY DISABLED]
 - 🧠 `/whyall`: Show reasons for all 10 recommendations.
 - 📊 `/chart [TICKER]`: View static price chart + live links (DexScreener, CoinGecko).
 - 🛒 `/buy [TICKER]`: Direct PancakeSwap link with token metadata and recommendation.
@@ -27,14 +27,15 @@
   - News via Tavily API
   - Sentiment & historical patterns
 - Fetches pools via CoinGecko On-Chain API
-- Injects *Promoted Tokens* every other day into the top 10 list
+- Injects _Promoted Tokens_ every other day into the top 10 list
 
 > AI-generated recommendations include a `rec` code:
-> - 🔵 `B`: Buy  
-> - 🟡 `N`: Neutral / Hold  
-> - 🔴 `S`: Sell  
-> - 🐻 `SS`: Strong Sell  
-> - 🚀 `SB`: Strong Buy  
+>
+> - 🔵 `B`: Buy
+> - 🟡 `N`: Neutral / Hold
+> - 🔴 `S`: Sell
+> - 🐻 `SS`: Strong Sell
+> - 🚀 `SB`: Strong Buy
 
 ---
 
@@ -114,6 +115,7 @@ node index.js
 
 - Triggered daily via `node-cron` (UTC time).
 - Saves to MongoDB with schema:
+
 ```json
 {
   "date": "2025-07-31",
@@ -136,13 +138,15 @@ node index.js
 ## 📢 Promoted Tokens
 
 Admin-only panel supports:
+
 - ➕ Add a promoted token (address, ticker, pool, reason, rating)
 - ➖ Remove a promoted token
 - 📃 List all promoted tokens
 
 Injected on alternating days using:
+
 ```js
-PromotedToken.find()
+PromotedToken.find();
 ```
 
 ---
@@ -169,4 +173,4 @@ MIT License – free for commercial or personal use.
 
 ---
 
-🧠 *Stay smart. Stay automated. Trade with TRADAIR.*
+🧠 _Stay smart. Stay automated. Trade with TRADAIR._

@@ -35,7 +35,7 @@ mongoose.connect(process.env.MONGO_URI)
 const commands = [
   { command: "/top10", description: "Show top 10 token recommendations" },
   { command: "/best", description: "Show best buy recommendation" },
-  { command: "/why", description: "Get reason for a specific token" },
+  /* { command: "/why", description: "Get reason for a specific token" }, */
   { command: "/chart", description: "Get buy/sell charts for a specific token" },
   { command: "/buy", description: "Return pancakeswap link to purchase a specific token" },
   { command: "/whyall", description: "Reasons for all top 10 tokens" },
